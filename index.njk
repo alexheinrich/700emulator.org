@@ -1,0 +1,27 @@
+---
+layout: layouts/home.njk
+
+---
+
+<div class="center borderOuter">
+    <div class="menuHeader">
+        <div class="borderInner">
+            <h1>{{ metadata.title }}</h1>
+        </div>
+    </div>
+    <ul>
+        {% for item in navigation %}
+        <li class="borderInner"><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="menuFooter">
+        <div class="borderInner">
+            <h1>Are you interested in contributing?
+                <a href="">Contact us!</a>
+            </h1>
+        </div>
+    </div>
+
+    <div class="mouseFollower"></div>
+
+</div>
