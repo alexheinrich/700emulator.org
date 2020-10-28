@@ -1,0 +1,182 @@
+
+// Load CSS Reset from NPM
+// @import '../../node_modules/reset-css/reset.css';
+@import 'variables';
+@import 'mixins';
+
+@include font-face ('700', '700');
+
+* {
+  cursor: url('../images/buchlaArrow.svg'), auto !important;
+  user-select: none;
+}
+
+body {
+  background: #000;
+  color: #6a9d9c;
+  font-family: '700', monospace;
+  font-size: 24px;
+  line-height: 1.5;
+  padding: 0 15px;
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none; 
+}
+
+#{$heading-selectors},
+p {
+  a {
+    border-bottom: 2px solid;
+    margin-bottom: -0.3125rem;
+    padding-bottom: 0.3125rem;
+  }
+
+  // a::before {
+  //   content: '>';
+  //   display: inline-block;
+  //   margin-right: 0.5rem;
+  // }
+} 
+
+.linkBack::before {
+  content: '<';
+}
+
+#{$heading-selectors} {
+  color: #7f400c;
+}
+
+.borderOuter {
+  border: 1px solid #3c3d76;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 5;
+  border-image-source: url('../images/borderOuter.svg');
+  border-image-width: 12px;
+}
+
+.borderInner {
+  border: 1px solid #3c3d76;
+  border-image-slice: 5;
+  border-image-source: url('../images/borderOuter.svg');
+  border-image-width: 12px;
+  padding: 10px;
+}
+
+.center {
+  box-sizing: border-box;
+  margin: 50px auto;
+  max-width: 1080px;
+  width: 100%;
+}
+
+.bodyText,
+.menuFooter,
+.menuHeader,
+ul {
+  $gap: 6px;
+  display: grid;
+  grid-auto-rows: minmax(100px, 1fr);
+  grid-gap: $gap;
+  margin: $gap;
+}
+
+.bodyText,
+.menuFooter,
+.menuHeader {
+  grid-auto-columns: 1fr;
+}
+
+.mouseFollower {
+  background-color: rgba(#000, 0.75);
+  min-height: 150px;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  width: 700px;
+}
+
+ul {
+  display: grid;
+  grid-auto-columns: 1fr 1fr;
+  grid-template-areas: 'left right';
+}
+
+.librarian {
+  background: #500;
+  display: grid;
+  grid-template-rows: auto 2rem 5rem;
+  min-height: 640px;
+  
+  &-fullRow {
+    display: grid;
+    grid-template-areas: 'RcrdType Filename Comment Mem';
+    grid-template-columns: 12rem 12rem auto 3rem;
+    padding: 0 1rem;
+    
+    > *:not(:last-child) {
+      padding-right: 1rem;
+    }
+  }
+  
+  &-fileNameFields {
+    display: grid;
+    grid-template-areas: 'Filename Input Comment Input';
+    grid-template-columns: 10rem 8rem 9rem auto;
+
+    > * {
+      border-bottom: 2px solid #a38e80;
+      border-top: 2px solid #a38e80;
+      line-height: 1;
+      padding-bottom: 0.25rem;
+
+      &:not(:last-child) {
+        border-right: 2px solid #a38e80;
+      }
+
+      &:nth-child(odd) {
+        background-color: #550;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      &:nth-child(even) {
+        background-color: #a50;
+      }
+    }
+  }
+  
+  &-controlFields {
+    border-bottom: 2px solid #a38e80;
+    display: grid;
+    grid-template-areas: 'Filename Input Comment Input';
+    grid-template-columns: 9rem 22rem 9rem auto;
+
+    > * {
+      line-height: 1;
+      padding: 0 1rem;
+
+      > * {
+        margin-bottom: 0.125rem;
+      }
+    }
+
+    > *:nth-child(2) {
+      background-color: #055;
+      border-left: 2px solid #a38e80;
+      border-right: 2px solid #a38e80;
+    }
+  }
+}
+
+.labelUnderline {
+  border-bottom: 2px solid;
+  line-height: 1.25;
+  margin: 0.1875rem 0;
+}
