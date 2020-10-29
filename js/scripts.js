@@ -20,7 +20,22 @@ const typed = new Typed('.mouseFollower', {
   },
 });
 
-document.addEventListener('mousemove', (e) => {
+const setFollower = (e) => {
   follower.style.top = (e.pageY + 40) + 'px';
   follower.style.left = (e.pageX + 40) + 'px';
-});
+}
+
+
+const throttle = (func, limit) => {
+  let inThrottle
+  return (...args) => {
+    if (!inThrottle) {
+      func(...args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
+
+
+document.addEventListener('mousemove', throttle(setFollower, 25));
