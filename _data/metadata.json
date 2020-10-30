@@ -2,19 +2,9 @@
   "title": "The Buchla 700 Emulation Project",
   "url": "https://700emulator.org/",
   "description": "Emulator software for the Buchla 700 on Linux, OS X, and Windows.",
-  "feed": {
-    "subtitle": "Emulator software for the Buchla 700 on Linux, OS X, and Windows.",
-    "filename": "feed.xml",
-    "path": "/feed/feed.xml",
-    "id": "https://example.com/"
-  },
-  "jsonfeed": {
-    "path": "/feed/feed.json",
-    "url": "https://example.com/feed/feed.json"
-  },
   "author": {
-    "name": "Your Name Here",
-    "email": "youremailaddress@example.com",
-    "url": "https://example.com/about-me/"
+    "name": "Alexander Heinrich",
+    "email": "contact@700emulator.org",
+    "url": "https://700emulator.org/"
   }
 }

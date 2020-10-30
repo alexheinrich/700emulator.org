@@ -1,6 +1,9 @@
 ---
 layout: layouts/home.njk
-
+contact: 
+    label: Are you interested in contributing?
+    link: 
+        label: Contact us! 
 ---
 
 <div class="center borderOuter">
@@ -16,8 +19,8 @@ layout: layouts/home.njk
     </ul>
     <div class="menuFooter">
         <div class="borderInner">
-            <h1>Are you interested in contributing?
-                <a href="">Contact us!</a>
+            <h1>{{ contact.label }}
+                <a href="{{ metadata.author.url }}">{{ contact.link.label }}</a>
             </h1>
         </div>
     </div>
