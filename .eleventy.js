@@ -45,9 +45,7 @@ module.exports = function(eleventyConfig) {
     return number.toString().padStart(targetLength, padString);
   });
 
-  eleventyConfig.addPassthroughCopy("assets/fonts");
-  eleventyConfig.addPassthroughCopy("assets/icons");
-  eleventyConfig.addPassthroughCopy("assets/images");
+  eleventyConfig.addPassthroughCopy("assets");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
@@ -102,7 +100,7 @@ module.exports = function(eleventyConfig) {
 
     // These are all optional, defaults are shown:
     dir: {
-      input: ".",
+      input: "src",
       includes: "_includes",
       data: "_data",
       output: "_site"
