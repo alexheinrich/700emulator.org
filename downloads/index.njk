@@ -1,0 +1,105 @@
+---
+layout: layouts/base.njk
+title: Downloads
+templateClass: tmpl-base
+eleventyNavigation:
+  key: Downloads
+  order: 3
+
+columns:
+    - librarian-small
+    - librarian-small
+    - librarian-grow
+    - librarian-tiny
+labels:
+    header:
+        - RcrdType
+        - Filename
+        - Comment
+        - Mem
+    controls:
+        filename: Filename
+        comment: Comment
+    diskInfo:
+        index: Index
+        content: Content
+        loOrch: Lo Orch
+
+
+downloads:
+    - type: Zipfile
+      name: Macos.zip
+      description: Macos version of the 700 emulator
+    - type: Zipfile
+      name: Win.zip
+      description: Windows version of the 700 emulator
+    - type: Zipfile
+      name: Linux.zip
+      description: Linux version of the 700 emulator
+    - type: Repository
+      name: buchla-68k
+      description: Link to the source our modified version of the 700 firmware
+    - type: Repository
+      name: buchla-emu
+      description: Link to the source of our emulator
+
+---
+
+<div class="center librarian">
+    <div class="librarian-files">
+        <div class="librarian-fullRow librarian-label">
+            {% for label in labels.header %}
+                <div class="{{ columns[loop.index] }}">
+                    <div class="labelUnderline">
+                        {{ label }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% for download in downloads %}
+            <div class="librarian-fullRow librarian-files">
+                <div class="librarian-small">
+                    {{ download.type }}
+                </div>
+                <div class="librarian-small">
+                    {{ download.name }}
+                </div>
+                <div class="librarian-grow">
+                    {{ download.description }}
+                </div>
+                <div class="librarian-tiny">
+                    {{ loop.index | padStart }}
+                </div>
+            </div> 
+        {% endfor %}
+    </div>
+    <div class="librarian-controls">
+        <div class="librarian-fileNameFields">
+            <div class="librarian-fileName">
+                {{ labels.controls.filename }}
+            </div>
+            <div class="librarian-inputText">
+                
+            </div>
+            <div class="librarian-Comment">
+                {{ labels.controls.comment }}
+            </div>
+            <div class="librarian-inputText">
+
+            </div>
+        </div>
+        <div class="librarian-controlFields">
+            <div class="librarian-diskInfo">
+                <div>{{ labels.diskInfo.index }}</div>
+                <div>{{ labels.diskInfo.content }}</div>
+                <div>{{ labels.diskInfo.loOrch }}</div>
+            </div>
+            <div class="librarian-diskInfo">
+                <div>Store Score Hi Orch</div>         
+                <div>Waves Patch Lo Orch</div>         
+                <div>Assgn Seqnc Tunings</div>         
+            </div>
+        </div>
+    </div>
+    <div class="mouseFollower"></div>
+</div>

@@ -40,6 +40,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("min", (...numbers) => {
     return Math.min.apply(null, numbers);
   });
+  
+  eleventyConfig.addFilter("padStart", (number, targetLength = 3, padString = '0') => {
+    return number.toString().padStart(targetLength, padString);
+  });
 
   eleventyConfig.addCollection("tagList", function(collection) {
     let tagSet = new Set();

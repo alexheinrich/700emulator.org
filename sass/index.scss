@@ -7,7 +7,7 @@
 @include font-face ('700', '700');
 
 * {
-  cursor: url('../images/buchlaArrow.svg'), auto !important;
+  cursor: url('../images/buchlaArrow.svg') 35 35, auto !important;
   user-select: none;
 }
 

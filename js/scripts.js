@@ -2,7 +2,7 @@ import Typed from 'typed.js';
 
 window.oncontextmenu = function goBack(e) {
   e.preventDefault();
-  window.location.href = 'index.html';
+  window.location.href = '/index.html';
 };
 
 const follower = document.querySelector('.mouseFollower');
@@ -38,4 +38,4 @@ const throttle = (func, limit) => {
 }
 
 
-document.addEventListener('mousemove', throttle(setFollower, 25));
+document.addEventListener('mousemove', throttle(setFollower, 5));
