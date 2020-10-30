@@ -10,8 +10,8 @@ const markdownItAnchor = require("markdown-it-anchor");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSass, {
-    watch: 'sass/index.scss',
-    outputDir: '_site/css'
+    watch: 'assets/main.scss',
+    outputDir: '_site'
   });
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
@@ -45,36 +45,9 @@ module.exports = function(eleventyConfig) {
     return number.toString().padStart(targetLength, padString);
   });
 
-  eleventyConfig.addCollection("tagList", function(collection) {
-    let tagSet = new Set();
-    collection.getAll().forEach(function(item) {
-      if( "tags" in item.data ) {
-        let tags = item.data.tags;
-
-        tags = tags.filter(function(item) {
-          switch(item) {
-            // this list should match the `filter` list in tags.njk
-            case "all":
-            case "nav":
-              return false;
-          }
-
-          return true;
-        });
-
-        for (const tag of tags) {
-          tagSet.add(tag);
-        }
-      }
-    });
-
-    // returning an array in addCollection works in Eleventy 0.5.3
-    return [...tagSet];
-  });
-
-  eleventyConfig.addPassthroughCopy("images");
-  eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("assets/fonts");
+  eleventyConfig.addPassthroughCopy("assets/icons");
+  eleventyConfig.addPassthroughCopy("assets/images");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
