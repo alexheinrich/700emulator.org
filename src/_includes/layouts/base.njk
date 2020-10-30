@@ -12,6 +12,7 @@
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
   </head>
   <body>
+    <script class="mouseFollowerJson" type="application/json">{{ mouseFollowerData | dump | safe  }}</script>
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
     </main>
