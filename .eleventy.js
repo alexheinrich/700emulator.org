@@ -45,7 +45,9 @@ module.exports = function(eleventyConfig) {
     return number.toString().padStart(targetLength, padString);
   });
 
-  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("assets/fonts");
+  eleventyConfig.addPassthroughCopy("assets/icons");
+  eleventyConfig.addPassthroughCopy("assets/images");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
