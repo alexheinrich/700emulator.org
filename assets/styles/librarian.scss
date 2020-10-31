@@ -1,0 +1,72 @@
+.librarian {
+  background: get-color(rosewood);
+  display: grid;
+  grid-template-rows: auto 2rem 5rem;
+  min-height: 640px;
+
+  &-fullRow {
+    display: grid;
+    grid-template-areas: "RcrdType Filename Comment Mem";
+    grid-template-columns: 12rem 12rem auto 3rem;
+    padding: 0 1rem;
+
+    > *:not(:last-child) {
+      padding-right: 1rem;
+    }
+  }
+
+  &-fileNameFields {
+    display: grid;
+    grid-template-areas: "Filename Input Comment Input";
+    grid-template-columns: 10rem 8rem 9rem auto;
+
+    > * {
+      border-bottom: 2px solid get-color(orange-peach);
+      border-top: 2px solid get-color(orange-peach);
+      line-height: 1;
+      padding-bottom: 0.25rem;
+
+      &:not(:last-child) {
+        border-right: 2px solid get-color(orange-peach);
+      }
+
+      &:nth-child(odd) {
+        background-color: get-color(green-olive);
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      &:nth-child(even) {
+        background-color: get-color(orange);
+      }
+    }
+  }
+
+  &-controlFields {
+    border-bottom: 2px solid get-color(orange-peach);
+    display: grid;
+    grid-template-areas: "Filename Input Comment Input";
+    grid-template-columns: 9rem 22rem 9rem auto;
+
+    > * {
+      line-height: 1;
+      padding: 0 1rem;
+
+      > * {
+        margin-bottom: 0.125rem;
+      }
+    }
+
+    > *:nth-child(2) {
+      background-color: #055;
+      border-left: 2px solid get-color(orange-peach);
+      border-right: 2px solid get-color(orange-peach);
+    }
+  }
+
+  .labelUnderline {
+    border-bottom: 2px solid;
+    line-height: 1.25;
+    margin: 0.1875rem 0;
+  }
+}

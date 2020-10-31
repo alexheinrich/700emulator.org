@@ -1,0 +1,21 @@
+.color-palette {
+  @each $color-name, $color-value in $colors {
+    $i: index($colors, ($color-name $color-value));
+    *:nth-child(#{$i}) {
+      background-color: $color-value;
+      display: flex;
+      justify-content: flex-end;
+      &:before {
+        content: "#{$color-name}";
+        padding: 8px 50px;
+        display: block;
+        flex: 0 0 auto;
+        background-color: rgba(get-color(black), 0.5);
+      }
+    }
+  }
+
+  div {
+    height: 50px;
+  }
+}
