@@ -1,20 +1,19 @@
-
 // Load CSS Reset from NPM
-@import '../node_modules/reset-css/reset.css';
-@import 'styles/variables';
-@import 'styles/mixins';
+@import "../node_modules/reset-css/reset.css";
+@import "styles/variables";
+@import "styles/mixins";
 
-@include font-face ('700', '700');
+@include font-face("700", "700");
 
 * {
-  cursor: url('/assets/icons/buchlaArrow.svg') 35 35, auto !important;
+  cursor: url("/assets/icons/buchlaArrow.svg") 35 35, auto !important;
   user-select: none;
 }
 
 body {
-  background: #000;
-  color: #6a9d9c;
-  font-family: '700', monospace;
+  background: get-color(black);
+  color: get-color(turquoise);
+  font-family: "700", monospace;
   font-size: 24px;
   line-height: 1.5;
   padding: 0 15px;
@@ -27,7 +26,7 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 #{$heading-selectors},
@@ -43,29 +42,29 @@ p {
   //   display: inline-block;
   //   margin-right: 0.5rem;
   // }
-} 
+}
 
 .linkBack::before {
-  content: '<';
+  content: "<";
 }
 
 #{$heading-selectors} {
-  color: #7f400c;
+  color: get-color(brown-rust);
 }
 
 .borderOuter {
-  border: 1px solid #3c3d76;
+  border: 1px solid get-color(blue-midnight);
   border-image-outset: 0;
   border-image-repeat: stretch;
   border-image-slice: 5;
-  border-image-source: url('/assets/images/borderOuter.svg');
+  border-image-source: url("/assets/images/borderOuter.svg");
   border-image-width: 12px;
 }
 
 .borderInner {
-  border: 1px solid #3c3d76;
+  border: 1px solid get-color(blue-midnight);
   border-image-slice: 5;
-  border-image-source: url('/assets/images/borderOuter.svg');
+  border-image-source: url("/assets/images/borderOuter.svg");
   border-image-width: 12px;
   padding: 10px;
 }
@@ -95,7 +94,7 @@ ul {
 }
 
 .mouseFollower {
-  background-color: rgba(#000, 0.75);
+  background-color: rgba(get-color(black), 0.75);
   min-height: 150px;
   padding: 0.5rem 1rem;
   position: absolute;
@@ -105,57 +104,57 @@ ul {
 ul {
   display: grid;
   grid-auto-columns: 1fr 1fr;
-  grid-template-areas: 'left right';
+  grid-template-areas: "left right";
 }
 
 .librarian {
-  background: #500;
+  background: get-color(rosewood);
   display: grid;
   grid-template-rows: auto 2rem 5rem;
   min-height: 640px;
-  
+
   &-fullRow {
     display: grid;
-    grid-template-areas: 'RcrdType Filename Comment Mem';
+    grid-template-areas: "RcrdType Filename Comment Mem";
     grid-template-columns: 12rem 12rem auto 3rem;
     padding: 0 1rem;
-    
+
     > *:not(:last-child) {
       padding-right: 1rem;
     }
   }
-  
+
   &-fileNameFields {
     display: grid;
-    grid-template-areas: 'Filename Input Comment Input';
+    grid-template-areas: "Filename Input Comment Input";
     grid-template-columns: 10rem 8rem 9rem auto;
 
     > * {
-      border-bottom: 2px solid #a38e80;
-      border-top: 2px solid #a38e80;
+      border-bottom: 2px solid get-color(orange-peach);
+      border-top: 2px solid get-color(orange-peach);
       line-height: 1;
       padding-bottom: 0.25rem;
 
       &:not(:last-child) {
-        border-right: 2px solid #a38e80;
+        border-right: 2px solid get-color(orange-peach);
       }
 
       &:nth-child(odd) {
-        background-color: #550;
+        background-color: get-color(green-olive);
         padding-left: 1rem;
         padding-right: 1rem;
       }
 
       &:nth-child(even) {
-        background-color: #a50;
+        background-color: get-color(orange);
       }
     }
   }
-  
+
   &-controlFields {
-    border-bottom: 2px solid #a38e80;
+    border-bottom: 2px solid get-color(orange-peach);
     display: grid;
-    grid-template-areas: 'Filename Input Comment Input';
+    grid-template-areas: "Filename Input Comment Input";
     grid-template-columns: 9rem 22rem 9rem auto;
 
     > * {
@@ -169,8 +168,8 @@ ul {
 
     > *:nth-child(2) {
       background-color: #055;
-      border-left: 2px solid #a38e80;
-      border-right: 2px solid #a38e80;
+      border-left: 2px solid get-color(orange-peach);
+      border-right: 2px solid get-color(orange-peach);
     }
   }
 }
@@ -179,4 +178,26 @@ ul {
   border-bottom: 2px solid;
   line-height: 1.25;
   margin: 0.1875rem 0;
+}
+
+.color-palette {
+  @each $color-name, $color-value in $colors {
+    $i: index($colors, ($color-name $color-value));
+    *:nth-child(#{$i}) {
+      background-color: $color-value;
+      display: flex;
+      justify-content: flex-end;
+      &:before {
+        content: '#{$color-name}';
+        padding: 8px 50px;
+        display: block;
+        flex: 0 0 auto;
+        background-color: rgba(get-color(black), 0.5);
+      }
+    }
+  }
+
+  div {
+    height: 50px;
+  }
 }

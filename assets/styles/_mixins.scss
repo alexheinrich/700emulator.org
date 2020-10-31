@@ -21,6 +21,10 @@
   }
 }
 
+@function get-color($color) {
+  @return map-get($colors, $color);
+}
+
 @mixin center(
   $max-width: $container-max-width,
   $padding: $container-padding-desktop
