@@ -1,0 +1,24 @@
+.instrument-designer {
+    .tabs {
+        display: flex;
+        justify-content: space-between;
+
+        &-tab {
+            flex: 1 1 auto;
+            text-align: right;
+            height: 60px;
+            border: 3px solid get-color(blue-midnight);
+            padding: 0 15px;
+
+            &--blue-dark {
+                background: get-color(blue-dark);
+            }
+            &--crimson {
+                background: get-color(crimson);
+            }
+            &:not(:last-child) {
+                border-right: 0;
+            }
+        }
+    }
+}

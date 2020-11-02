@@ -1,7 +1,6 @@
-{% set labels = tabs.labels %}
 <div class="tabs">
     {% for label in labels %}
-        <div class="tabs-tab">
+        <div class="tabs-tab tabs-tab--{{ color }}">
             {{ label }}
         </div>
     {% endfor %}

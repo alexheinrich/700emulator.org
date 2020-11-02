@@ -14,8 +14,21 @@ tabs:
     - Frq 4
     - Filtr
     - Loctn
+
+  labels2:
+    - Ind 1
+    - Ind 2
+    - Ind 3
+    - Ind 4
+    - Ind 5
+    - Ind 6
 ---
-<div class="instrument-designer">
+<div class="center instrument-designer">
+  {% set labels = tabs.labels %}
+  {% set color = 'blue-dark' %}
+  {% include "./_partials/tabs.njk" %}
+  {% set labels = tabs.labels2 %}
+  {% set color = 'crimson' %}
   {% include "./_partials/tabs.njk" %}
   <div class=""></div>
   <div class=""></div>
