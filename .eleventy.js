@@ -10,7 +10,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSass, {
-    watch: 'assets/main.scss',
+    watch: ['assets/*.scss'],
     outputDir: '_site'
   });
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
