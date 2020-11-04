@@ -3,6 +3,7 @@ export class InstrumentDesigner {
         this.container = container
         this.addFunctionPoint = addFunctionPoint
         this.strokeStyle = '#09D323';
+        this.fillStyle = '#F2F300';
         this.lineWidth = 2;
         this.init()
         this.updateUI(state)
@@ -14,6 +15,10 @@ export class InstrumentDesigner {
         this.resolveElements()
         this.bindFunctions()
         this.bindEvents()
+
+        this.ctx.strokeStyle = this.strokeStyle
+        this.ctx.lineWidth = this.lineWidth
+        this.ctx.fillStyle = this.fillStyle
     }
 
     bindEvents() {
@@ -21,10 +26,9 @@ export class InstrumentDesigner {
     }
 
     bindFunctions () {
-        this.draw = this.draw.bind(this)
+        this.drawFunction = this.drawFunction.bind(this)
         this.handleCanvasClick = this.handleCanvasClick.bind(this)
     }
-
 
     resolveElements() {
         this.canvas = this.container.querySelector('.canvas')
@@ -32,18 +36,22 @@ export class InstrumentDesigner {
     }
 
     updateUI(state) {
-        this.draw(state.functionPoints)
+        this.drawFunction(state.functionPoints)
+        this.drawFunctionPoints(state.functionPoints)
     }
 
-    draw(points) {
+    drawFunctionPoints(points) {
+        points.forEach(point => {
+            this.ctx.fillRect(point.x - this.lineWidth, point.y - this.lineWidth, 4, 4)
+        })
+    }
+
+    drawFunction(points) {
         this.ctx.beginPath()
         this.ctx.moveTo(0, 680)
-        console.log(points)
         points.forEach(point => {
             this.ctx.lineTo(point.x, point.y)
         })
-        this.ctx.strokeStyle = this.strokeStyle;
-        this.ctx.lineWidth = this.lineWidth;
         this.ctx.stroke();
     }
 
@@ -53,7 +61,5 @@ export class InstrumentDesigner {
         const y = e.clientY - rect.top
 
         this.addFunctionPoint(x, y)
-
-        // this.ctx.fillRect(x - 1, y - 1, 5, 5);
     }
 }
