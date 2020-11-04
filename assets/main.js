@@ -1,4 +1,6 @@
 import Typed from 'typed.js';
+import { StateHandler } from './scripts/StateHandler.js';
+import { InstrumentDesigner } from './scripts/modules/InstrumentDesigner.js';
 
 window.oncontextmenu = function goBack(e) {
   e.preventDefault();
@@ -36,6 +38,12 @@ const throttle = (func, limit) => {
   }
 }
 
+const stateHandler = new StateHandler()
+
+const instrumentDesignerEl = document.querySelector('.instrument-designer')
+if (instrumentDesignerEl) {
+  const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl)
+}
 
 
 const canvas = document.querySelector('.canvas')
