@@ -39,32 +39,13 @@ const throttle = (func, limit) => {
 }
 
 const stateHandler = new StateHandler()
+const { addFunctionPoint } = stateHandler
 
 const instrumentDesignerEl = document.querySelector('.instrument-designer')
 if (instrumentDesignerEl) {
-  const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl)
+  const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl, stateHandler.state, addFunctionPoint)
+  document.addEventListener('updateUI', function (event) {
+    instrumentDesigner.updateUI(event.detail.state)
+  })
 }
 
-
-const canvas = document.querySelector('.canvas')
-if (canvas) {
-
-  const ctx = canvas.getContext('2d')
-  ctx.beginPath();
-  ctx.moveTo(0, 680);
-  ctx.lineTo(100, 75);
-  ctx.lineTo(100, 25);
-  ctx.strokeStyle = '#09D323';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  
-  canvas.onclick = (e) => {
-    const rect = canvas.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
-    ctx.lineTo(x, y);
-    ctx.stroke();
-
-    ctx.fillRect(x - 1, y - 1, 5, 5);
-  }
-}
