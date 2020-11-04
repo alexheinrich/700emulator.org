@@ -1,20 +1,21 @@
 const throttleDuration = 10
 
 export class StateHandler {
-  constructor () {
+  constructor() {
     this.updateUITimeout = setTimeout(() => { })
     this.bindFunctions()
     this.state = Object.assign({}, this.getDefaultState())
   }
 
-  bindFunctions () {
+  bindFunctions() {
     this.setState = this.setState.bind(this)
     this.getDefaultState = this.getDefaultState.bind(this)
     this.addFunctionPoint = this.addFunctionPoint.bind(this)
+    this.removeLastFunctionPoint = this.removeLastFunctionPoint.bind(this)
     this.updateUI = this.updateUI.bind(this)
   }
 
-  setState (key, value) {
+  setState(key, value) {
     this.state[key] = value
     clearTimeout(this.updateUITimeout)
     this.updateUITimeout = setTimeout(() => {
@@ -22,23 +23,32 @@ export class StateHandler {
     }, throttleDuration)
   }
 
-  updateUI (state) {
+  updateUI(state) {
     const updateUI = new CustomEvent('updateUI', { detail: { state } })
     document.dispatchEvent(updateUI)
   }
 
-  addFunctionPoint (x, y) {
-    this.state.functionPoints.push({x: x, y: y})
-    this.setState('functionPoints', this.state.functionPoints)
+  addFunctionPoint(x, y) {
+    const functionPoints = this.state.functionPoints
+    if (functionPoints[functionPoints.length - 1].x < x) {
+      this.state.functionPoints.push({ x: x, y: y })
+      this.setState('functionPoints', functionPoints)
+    }
   }
 
-  getDefaultState () {
+  removeLastFunctionPoint() {
+    const functionPoints = this.state.functionPoints
+    functionPoints.pop()
+    this.setState('functionPoints', functionPoints)
+  }
+
+  getDefaultState() {
     return {
-        functionPoints: [
-            {x: 0, y: 680}, 
-            {x: 100, y: 75},
-            {x: 100, y: 25}
-        ]
+      functionPoints: [
+        { x: 0, y: 680 },
+        { x: 100, y: 75 },
+        { x: 100, y: 25 }
+      ]
     }
   }
 }

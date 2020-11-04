@@ -1,7 +1,8 @@
 export class InstrumentDesigner {
-    constructor(container, state, addFunctionPoint) {
+    constructor(container, state, addFunctionPoint, removeLastFunctionPoint) {
         this.container = container
         this.addFunctionPoint = addFunctionPoint
+        this.removeLastFunctionPoint = removeLastFunctionPoint
         this.strokeStyle = '#09D323';
         this.fillStyle = '#F2F300';
         this.lineWidth = 2;
@@ -23,11 +24,13 @@ export class InstrumentDesigner {
 
     bindEvents() {
         this.canvas.onclick = this.handleCanvasClick
+        document.addEventListener('keypress', this.handleKeypress);
     }
 
     bindFunctions () {
         this.drawFunction = this.drawFunction.bind(this)
         this.handleCanvasClick = this.handleCanvasClick.bind(this)
+        this.handleKeypress = this.handleKeypress.bind(this)
     }
 
     resolveElements() {
@@ -36,6 +39,7 @@ export class InstrumentDesigner {
     }
 
     updateUI(state) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawFunction(state.functionPoints)
         this.drawFunctionPoints(state.functionPoints)
     }
@@ -61,5 +65,9 @@ export class InstrumentDesigner {
         const y = e.clientY - rect.top
 
         this.addFunctionPoint(x, y)
+    }
+
+    handleKeypress(e) {
+        this.removeLastFunctionPoint()   
     }
 }

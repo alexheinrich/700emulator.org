@@ -39,11 +39,11 @@ const throttle = (func, limit) => {
 }
 
 const stateHandler = new StateHandler()
-const { addFunctionPoint } = stateHandler
+const { addFunctionPoint, removeLastFunctionPoint } = stateHandler
 
 const instrumentDesignerEl = document.querySelector('.instrument-designer')
 if (instrumentDesignerEl) {
-  const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl, stateHandler.state, addFunctionPoint)
+  const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl, stateHandler.state, addFunctionPoint, removeLastFunctionPoint)
   document.addEventListener('updateUI', function (event) {
     instrumentDesigner.updateUI(event.detail.state)
   })
