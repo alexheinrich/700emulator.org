@@ -58,7 +58,7 @@ export class BuchlaFPU {
             this.voice.gain.gain.linearRampToValueAtTime(gain, now);
         })
 
-        // this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
+        this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
 
         this.context.resume();
 
