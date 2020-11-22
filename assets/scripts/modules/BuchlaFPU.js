@@ -49,7 +49,7 @@ export class BuchlaFPU {
         var now = this.context.currentTime;
         this.voice.gain.gain.setTargetAtTime(0, now, 0.015);
         now = now + 0.015
-        // this.voice.gain.gain.cancelScheduledValues(now)
+        this.voice.gain.gain.cancelScheduledValues(now)
 
         state.functionPoints.forEach((functionPoint) => {
             console.log(functionPoint)
