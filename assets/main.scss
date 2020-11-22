@@ -9,7 +9,7 @@
 @include font-face("700", "700");
 
 * {
-  cursor: url("/assets/icons/buchlaArrow.svg") 35 35, auto !important;
+  cursor: url("/assets/icons/buchlaArrow.svg") -35 -35, auto !important;
   user-select: none;
 }
 
