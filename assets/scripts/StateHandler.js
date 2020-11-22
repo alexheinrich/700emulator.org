@@ -13,6 +13,7 @@ export class StateHandler {
     this.addFunctionPoint = this.addFunctionPoint.bind(this)
     this.removeLastFunctionPoint = this.removeLastFunctionPoint.bind(this)
     this.updateUI = this.updateUI.bind(this)
+    this.triggerFunction = this.triggerFunction.bind(this)
   }
 
   setState(key, value) {
@@ -20,12 +21,19 @@ export class StateHandler {
     clearTimeout(this.updateUITimeout)
     this.updateUITimeout = setTimeout(() => {
       this.updateUI(this.state)
+      if (this.state.triggerFunction === true) this.triggerFunction(this.state)
     }, throttleDuration)
   }
 
   updateUI(state) {
+    console.log('updateUI', state)
     const updateUI = new CustomEvent('updateUI', { detail: { state } })
     document.dispatchEvent(updateUI)
+  }
+
+  triggerFunction(state) {
+    const triggerFunction = new CustomEvent('triggerFunction', { detail: { state } })
+    document.dispatchEvent(triggerFunction)
   }
 
   addFunctionPoint(x, y) {
@@ -33,6 +41,7 @@ export class StateHandler {
     if (functionPoints[functionPoints.length - 1].x < x) {
       this.state.functionPoints.push({ x: x, y: y })
       this.setState('functionPoints', functionPoints)
+      this.setState('triggerFunction', true)
     }
   }
 
@@ -40,6 +49,7 @@ export class StateHandler {
     const functionPoints = this.state.functionPoints
     functionPoints.pop()
     this.setState('functionPoints', functionPoints)
+    this.setState('triggerFunction', false)
   }
 
   getDefaultState() {
@@ -47,8 +57,10 @@ export class StateHandler {
       functionPoints: [
         { x: 0, y: 680 },
         { x: 100, y: 75 },
-        { x: 100, y: 25 }
-      ]
+        { x: 200, y: 150 },
+        { x: 380, y: 145 }
+      ],
+      triggerFunction: true
     }
   }
 }
