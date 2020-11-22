@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An modern approximation of the Buchla 700.",
   "scripts": {
-    "build": "eleventy",
+    "build": "eleventy --pathprefix=/700emulator.org_eleventy",
     "watch": "eleventy --watch",
     "serve:webpack": "webpack --mode development --watch",
     "serve:eleventy": "eleventy --serve",

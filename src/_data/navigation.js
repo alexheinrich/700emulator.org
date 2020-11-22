@@ -1,18 +1,18 @@
 module.exports = [
     {
         'label': 'Downloads',
-        'url': '/downloads'
+        'url': 'downloads'
     },
     {
         'label': 'About',
-        'url': '/about'
+        'url': 'about'
     },
     {
         'label': 'Instrument designer',
-        'url': '/instrument-designer'
+        'url': 'instrument-designer'
     },
     {
         'label': 'Color Palette',
-        'url': '/color-palette'
+        'url': 'color-palette'
     }
 ]

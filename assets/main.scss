@@ -9,7 +9,7 @@
 @include font-face("700", "700");
 
 * {
-  cursor: url("/assets/icons/buchlaArrow.svg") -35 -35, auto !important;
+  cursor: url("assets/icons/buchlaArrow.svg") -35 -35, auto !important;
   user-select: none;
 }
 
@@ -65,14 +65,14 @@ p {
   border-image-outset: 0;
   border-image-repeat: stretch;
   border-image-slice: 5;
-  border-image-source: url("/assets/images/borderOuter.svg");
+  border-image-source: url("assets/images/borderOuter.svg");
   border-image-width: 12px;
 }
 
 .borderInner {
   border: 1px solid get-color(blue-midnight);
   border-image-slice: 5;
-  border-image-source: url("/assets/images/borderOuter.svg");
+  border-image-source: url("assets/images/borderOuter.svg");
   border-image-width: 12px;
   padding: 10px;
 }
