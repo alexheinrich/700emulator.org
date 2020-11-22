@@ -64,6 +64,7 @@ export class InstrumentDesigner {
         const x = e.clientX - rect.left
         const y = e.clientY - rect.top
 
+        console.log('handleCanvasClick', x, y)
         this.addFunctionPoint(x, y)
     }
 

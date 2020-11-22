@@ -45,16 +45,21 @@ export class BuchlaFPU {
     }
 
     triggerFunction(state) {
-        var now = this.context.currentTime;
-        // gain.gain.setValueAtTime(gain.gain.value, now);
         console.log('FPU: triggerFunction', state)
-        var set = 0
+        var now = this.context.currentTime;
+        this.voice.gain.gain.setTargetAtTime(0, now, 0.015);
+        now = now + 0.015
+        // this.voice.gain.gain.cancelScheduledValues(now)
+
         state.functionPoints.forEach((functionPoint) => {
             console.log(functionPoint)
-            set = set + (1080 - functionPoint.x) * 0.001
-            console.log(set)
-            this.voice.gain.gain.linearRampToValueAtTime((680 - functionPoint.y) * 0.01, set);
+            now = now + ((1080 - functionPoint.x) / 1080) * 0.5
+            const gain = (680 - functionPoint.y) / 680
+            this.voice.gain.gain.linearRampToValueAtTime(gain, now);
         })
+
+        // this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
+
         this.context.resume();
 
     }
