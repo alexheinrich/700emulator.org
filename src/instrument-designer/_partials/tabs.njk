@@ -1,7 +1,7 @@
-<div class="tabs">
-    {% for label in labels %}
-        <div class="tabs-tab tabs-tab--{{ color }}">
-            {{ label }}
-        </div>
-    {% endfor %}
+<div class="tabs border">
+  {% for tab in tabs %}
+    <div class="tabs-tab tabs-tab--{{ tab.color }}" data-key="{{ tab.label }}">
+      {{ tab.label }}
+    </div>
+  {% endfor %}
 </div>

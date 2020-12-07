@@ -1,7 +1,7 @@
 import Typed from 'typed.js';
 import { StateHandler } from './scripts/StateHandler.js';
-import { InstrumentDesigner } from './scripts/modules/InstrumentDesigner.js';
-import { BuchlaFPU } from './scripts/modules/BuchlaFPU.js';
+import { InstrumentDesigner } from './scripts/modules/InstrumentDesigner/InstrumentDesigner.js';
+import { BuchlaFPU } from './scripts/modules/FPU/BuchlaFPU.js';
 
 
 // window.oncontextmenu = function goBack(e) {
@@ -47,7 +47,7 @@ const stateHandler = new StateHandler()
 const { addFunctionPoint, removeLastFunctionPoint } = stateHandler
 
 const instrumentDesignerEl = document.querySelector('.instrument-designer')
-const buchlaFPU = new BuchlaFPU('sdfsdf')
+const buchlaFPU = new BuchlaFPU()
 
 if (instrumentDesignerEl) {
   const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl, stateHandler.state, addFunctionPoint, removeLastFunctionPoint)

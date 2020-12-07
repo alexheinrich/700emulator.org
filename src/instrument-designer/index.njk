@@ -7,21 +7,30 @@ eleventyNavigation:
   order: 3
 
 tabs:
-  labels:
-    - Frq 1
-    - Frq 2
-    - Frq 3
-    - Frq 4
-    - Filtr
-    - Loctn
-
-  labels2:
-    - Ind 1
-    - Ind 2
-    - Ind 3
-    - Ind 4
-    - Ind 5
-    - Ind 6
+  - label: Frq 1
+    color: blue-dark
+  - label: Frq 2
+    color: blue-dark
+  - label: Frq 3
+    color: blue-dark
+  - label: Frq 4
+    color: blue-dark
+  - label: Filtr
+    color: blue-dark
+  - label: Loctn
+    color: blue-dark
+  - label: Ind 1
+    color: crimson
+  - label: Ind 2
+    color: crimson
+  - label: Ind 3
+    color: crimson
+  - label: Ind 4
+    color: crimson
+  - label: Ind 5
+    color: crimson
+  - label: Ind 6
+    color: crimson
 
 mouseFollowerData:
     - Welcome to the page of the Buchla 700 emulator.
@@ -29,13 +38,10 @@ mouseFollowerData:
     - This is the main menu. Click on one of items to get more info.
 ---
 <div class="center instrument-designer">
-  {% set labels = tabs.labels %}
-  {% set color = 'blue-dark' %}
   {% include "./_partials/tabs.njk" %}
-  {% set labels = tabs.labels2 %}
-  {% set color = 'crimson' %}
-  {% include "./_partials/tabs.njk" %}
-  <div class="">
-    <canvas class="canvas" width="1080" height="680"/></div>
-  <div class=""></div>
+  {# {% set color = 'crimson' %}
+  {% include "./_partials/tabs.njk" %} #}
+  <div class="canvasWrapper border">
+    <canvas class="canvas" width="1080" height="680"/>
+  </div>
 </div>

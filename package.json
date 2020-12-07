@@ -5,6 +5,7 @@
   "scripts": {
     "build": "eleventy --pathprefix=/700emulator.org_eleventy",
     "watch": "eleventy --watch",
+    "serve": "webpack --mode development --watch & eleventy --serve",
     "serve:webpack": "webpack --mode development --watch",
     "serve:eleventy": "eleventy --serve",
     "start": "eleventy --serve",

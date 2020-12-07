@@ -48,6 +48,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/fonts");
   eleventyConfig.addPassthroughCopy("assets/icons");
   eleventyConfig.addPassthroughCopy("assets/images");
+  eleventyConfig.addPassthroughCopy("fpu/gen");
+  eleventyConfig.addPassthroughCopy("assets/scripts");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({

@@ -1,31 +1,51 @@
 .instrument-designer {
-    .tabs {
-        display: flex;
-        justify-content: space-between;
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-        &-tab {
-            flex: 1 1 auto;
-            text-align: right;
-            height: 60px;
-            border: 3px solid get-color(blue-midnight);
-            padding: 0 15px;
+    &-tab {
+      flex: 1 1 16.6667%;
+      text-align: right;
+      border-right: 3px solid get-color(blue-midnight);
+      border-top: 3px solid get-color(blue-midnight);
+      height: 60px;
+      padding: 0 15px;
+      width: 16.6667%;
 
-            &--blue-dark {
-                background: get-color(blue-dark);
-            }
-            &--crimson {
-                background: get-color(crimson);
-            }
-            &:not(:last-child) {
-                border-right: 0;
-            }
-        }
+      &--blue-dark {
+        background: get-color(blue-dark);
+      }
+      &--crimson {
+        background: get-color(crimson);
+      }
+
+      &[data-key="Level"] {
+        color: get-color(turquoise-light);
+        background: get-color(green-sea);
+      }
+
+      &:nth-child(6n) {
+        border-right: 0;
+      }
+      &:nth-child(-n+6) {
+        border-top: 0;
+      }
     }
+  }
 
-    .canvas {
-        width: 100%;
-        height: 680px;
-        background-color: get-color(green-sea);
+  .canvas {
+    display: block;
+    width: 100%;
+    height: 680px;
+    background-color: get-color(green-sea);
+  }
 
+  .border {
+    border: 3px solid get-color(blue-midnight);
+
+    + .border {
+      border-top: 0;
     }
+  }
 }
