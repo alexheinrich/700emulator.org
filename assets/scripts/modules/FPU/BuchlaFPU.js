@@ -5,8 +5,8 @@ export class BuchlaFPU {
         this.init()
         this.context = new AudioContext()
         this.output = this.context.destination
-        // this.voice = this.createVoice(this.output)
-        this.wasmnode = this.createProcessor(this.context)
+        this.voice = this.createVoice(this.output)
+        // this.wasmnode = this.createProcessor(this.context)
 
     }
 
@@ -14,7 +14,7 @@ export class BuchlaFPU {
         this.bindFunctions()
     }
 
-    bindFunctions () {
+    bindFunctions() {
         this.createProcessor = this.createProcessor.bind(this)
     }
 
@@ -28,7 +28,7 @@ export class BuchlaFPU {
 
         testNode.connect(this.output)
 
-        return 'wasmnode'
+        return testNode
     }
 
     createVoice(output) {
@@ -58,29 +58,20 @@ export class BuchlaFPU {
     }
 
     triggerFunction(state) {
-        // const fib1 = new Fib(this.module)
-        // const fib2 = new Fib(this.module)
+        console.log('FPU: triggerFunction', state)
+        var now = this.context.currentTime;
+        this.voice.gain.gain.setTargetAtTime(0, now, 0.015);
+        now = now + 0.015
+        this.voice.gain.gain.cancelScheduledValues(now)
 
-        // console.log('Fib 1: ', fib1.next());
-        // console.log('Fib 1: ', fib1.next());
-        // console.log('Fib 2: ', fib2.next());
-        // console.log('Fib 2: ', fib2.next());
-        // console.log('Fib 2: ', fib2.next());
+        state.functions.get('Level').forEach((functionPoint) => {
+            console.log(functionPoint)
+            now = now + ((1080 - functionPoint.x) / 1080) * 0.5
+            const gain = (680 - functionPoint.y) / 680
+            this.voice.gain.gain.linearRampToValueAtTime(gain, now);
+        })
 
-        // console.log('FPU: triggerFunction', state)
-        // var now = this.context.currentTime;
-        // this.voice.gain.gain.setTargetAtTime(0, now, 0.015);
-        // now = now + 0.015
-        // this.voice.gain.gain.cancelScheduledValues(now)
-
-        // state.functions.get('Level').forEach((functionPoint) => {
-        //     console.log(functionPoint)
-        //     now = now + ((1080 - functionPoint.x) / 1080) * 0.5
-        //     const gain = (680 - functionPoint.y) / 680
-        //     this.voice.gain.gain.linearRampToValueAtTime(gain, now);
-        // })
-
-        // this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
+        this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
 
 
         this.context.resume();
