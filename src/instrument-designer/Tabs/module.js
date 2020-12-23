@@ -1,4 +1,4 @@
-export class IDTabs {
+export class Tabs {
     constructor(container, state, setActiveTab) {
         this.container = container
         this.tabs = [...this.container.children]

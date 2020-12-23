@@ -10,7 +10,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSass, {
-    watch: ['assets/*.scss'],
+    watch: ['src/**/*.scss'],
     outputDir: '_site'
   });
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
@@ -18,38 +18,13 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.setDataDeepMerge(true);
 
-
-  eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
-  });
-
-  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
-  });
-
-  // Get the first `n` elements of a collection.
-  eleventyConfig.addFilter("head", (array, n) => {
-    if( n < 0 ) {
-      return array.slice(n);
-    }
-
-    return array.slice(0, n);
-  });
-
-  eleventyConfig.addFilter("min", (...numbers) => {
-    return Math.min.apply(null, numbers);
-  });
-  
+  // Pad a number with 0s
   eleventyConfig.addFilter("padStart", (number, targetLength = 3, padString = '0') => {
     return number.toString().padStart(targetLength, padString);
   });
 
-  eleventyConfig.addPassthroughCopy("assets/fonts");
-  eleventyConfig.addPassthroughCopy("assets/icons");
-  eleventyConfig.addPassthroughCopy("assets/images");
-  eleventyConfig.addPassthroughCopy("fpu/gen");
-  eleventyConfig.addPassthroughCopy("assets/scripts");
+  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("fpu");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({

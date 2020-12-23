@@ -1,0 +1,13 @@
+.instrument-designer {
+  .border {
+    border: 3px solid get-color(blue-midnight);
+
+    + .border {
+      border-top: 0;
+    }
+  }
+
+  @import "EditedFunction/style";
+  @import "Tabs/style";
+  @import "FMConfig/style";
+}

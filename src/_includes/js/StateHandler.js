@@ -38,9 +38,9 @@ export class StateHandler {
     document.dispatchEvent(triggerFunction)
   }
 
-  addFunctionPoint(x, y, funcKey) {
+  addFunctionPoint(funcKey, x, y) {
     let functions = this.state.functions.get(funcKey)
-    if (functions[functions.length - 1].x < x) {
+    if (functions.length === 0 || functions[functions.length - 1].x < x) {
       functions.push({ x: x, y: y })
       this.state.functions.set(funcKey, functions)
       this.setState('functions', this.state.functions)
@@ -52,7 +52,7 @@ export class StateHandler {
     const functions = this.state.functions.get(funcKey)
     functions.pop()
     this.state.functions.set(funcKey, functions)
-    this.setState('functionPoints', this.state.functions)
+    this.setState('functions', this.state.functions)
     this.setState('triggerFunction', false)
   }
 

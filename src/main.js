@@ -1,7 +1,7 @@
 import Typed from 'typed.js';
-import { StateHandler } from './scripts/StateHandler.js';
-import { InstrumentDesigner } from './scripts/modules/InstrumentDesigner/InstrumentDesigner.js';
-import { BuchlaFPU } from './scripts/modules/FPU/BuchlaFPU.js';
+import { StateHandler } from './_includes/js/StateHandler.js';
+import { InstrumentDesigner } from './instrument-designer/module.js';
+import { BuchlaFPU } from '../fpu/js/BuchlaFPU.js';
 
 
 // window.oncontextmenu = function goBack(e) {
