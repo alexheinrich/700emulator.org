@@ -1,5 +1,4 @@
 import {cfg, patctab, pat, inspal} from './variables.js';
-
 export class FMConfig {
     constructor(canvas, state) {
         this.canvas = canvas
@@ -17,7 +16,6 @@ export class FMConfig {
     }
 
     bindFunctions() {
-        this.drawConfig = this.drawConfig.bind(this)
         this.putpat = this.putpat.bind(this)
         this.dispcfg = this.dispcfg.bind(this)
     }
@@ -28,12 +26,7 @@ export class FMConfig {
 
     updateUI() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.drawConfig()
-    }
-
-    drawConfig() {
-        console.log('drawConfig')
-        this.dispcfg(0);
+        this.dispcfg(1);
     }
 
     dispcfg(nn) {
