@@ -1,3 +1,4 @@
+import { EditedFunction } from './EditedFunction/module.js';
 import { FMConfig } from './FMConfig/module.js';
 import { Tabs } from './Tabs/module.js';
 
@@ -15,74 +16,28 @@ export class InstrumentDesigner {
     }
 
     init() {
-        // this.state = this.getDefaultState()
         this.resolveElements()
         this.bindFunctions()
         this.bindEvents()
 
-        this.ctx.strokeStyle = this.strokeStyle
-        this.ctx.lineWidth = this.lineWidth
-        this.ctx.fillStyle = this.fillStyle
-
-        this.tabs = new Tabs(this.container.querySelector('.tabs'), this.state, this.setActiveTab)
+        this.editedFunction = new EditedFunction(this.container.querySelector('.canvas'), this.state, this.addFunctionPoint, this.removeLastFunctionPoint)
         this.fmConfig = new FMConfig(this.container.querySelector('.fmConfig'), this.state, this.setActiveTab)
+        this.tabs = new Tabs(this.container.querySelector('.tabs'), this.state, this.setActiveTab)
     }
 
     bindEvents() {
-        this.canvas.onclick = this.handleCanvasClick
-        document.addEventListener('keypress', this.handleKeypress);
     }
 
     bindFunctions() {
-        this.drawFunction = this.drawFunction.bind(this)
-        this.handleCanvasClick = this.handleCanvasClick.bind(this)
-        this.handleKeypress = this.handleKeypress.bind(this)
         this.getDefaultState = this.getDefaultState.bind(this)
         this.setActiveTab = this.setActiveTab.bind(this)
     }
 
     resolveElements() {
-        this.canvas = this.container.querySelector('.canvas')
-        this.ctx = this.canvas.getContext('2d')
     }
 
     updateUI(state) {
-        const canvasFunction = state.functions.get(this.state.beingEdited)
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.drawFunction(canvasFunction)
-        this.drawFunctionPoints(canvasFunction)
-    }
-
-    drawFunctionPoints(points) {
-        points.forEach(point => {
-            this.ctx.fillRect(point.x - this.lineWidth, point.y - this.lineWidth, 4, 4)
-        })
-    }
-
-    drawFunction(points) {
-        this.ctx.beginPath()
-
-        const [firstPoint] = points.splice(0, 1)
-        this.ctx.moveTo(firstPoint.x, firstPoint.y)
-
-        points.forEach(point => {
-            this.ctx.lineTo(point.x, point.y)
-        })
-
-        points.unshift(firstPoint)
-        this.ctx.stroke()
-    }
-
-    handleCanvasClick(e) {
-        const rect = this.canvas.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-
-        this.addFunctionPoint(x, y, this.state.beingEdited)
-    }
-
-    handleKeypress(e) {
-        this.removeLastFunctionPoint(this.state.beingEdited)
+        this.editedFunction.updateUI(this.state)
     }
 
     setActiveTab(tabClicked) {
