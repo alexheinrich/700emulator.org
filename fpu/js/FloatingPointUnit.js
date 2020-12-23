@@ -1,6 +1,6 @@
 import Module from '/fpu/gen/hello.js';
 
-class TestProcessor extends AudioWorkletProcessor {
+class FloatingPointUnit extends AudioWorkletProcessor {
     constructor(options) {
         super()
         console.log(options.numberOfInputs)
@@ -27,7 +27,7 @@ class TestProcessor extends AudioWorkletProcessor {
     }
 }
 
-registerProcessor('test-processor', TestProcessor)
+registerProcessor('FloatingPointUnit', FloatingPointUnit)
 
 class Fib {
     constructor(module) {
