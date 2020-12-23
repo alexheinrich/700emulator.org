@@ -33,18 +33,18 @@ export class BuchlaFPU {
             mod: context.createOscillator(),
             modGain: context.createGain(),
             osc: context.createOscillator(),
-            gain: context.createGain()
+            gainNode: context.createGain()
         }
 
         voice.mod.frequency.value = 100
         voice.modGain.gain.value = 100
         voice.osc.frequency.value = 300
-        voice.gain.gain.value = 0
+        voice.gainNode.gain.value = 0
 
         voice.mod.connect(voice.modGain)
         voice.modGain.connect(voice.osc.frequency)
-        voice.osc.connect(voice.gain)
-        voice.gain.connect(output)
+        voice.osc.connect(voice.gainNode)
+        voice.gainNode.connect(output)
 
         voice.osc.start(0)
         voice.mod.start(0)
@@ -52,43 +52,47 @@ export class BuchlaFPU {
         return voice
     }
 
+    normalizeGain(rawValue) {
+        const range = 680
+        return (range - rawValue) / range
+    }
+
+    normalizeTime(rawValue) {
+        const range = 1080
+        return rawValue * 5 / range
+    }
+
     triggerFunction(state) {
         console.log('FPU: triggerFunction', state)
-        var now = this.context.currentTime;
-        this.voice.gain.gain.setTargetAtTime(0, now, 0.015);
-        now = now + 0.015
-        this.voice.gain.gain.cancelScheduledValues(now)
+        let now = this.context.currentTime
+        this.voice.gainNode.gain.cancelScheduledValues(now)
+        this.voice.gainNode.gain.setValueAtTime(0, now)
+        
+        const functionPoints = state.functions.get('Level')
 
-        state.functions.get('Level').forEach((functionPoint) => {
-            console.log(functionPoint)
-            now = now + ((1080 - functionPoint.x) / 1080) * 0.5
-            const gain = (680 - functionPoint.y) / 680
-            this.voice.gain.gain.linearRampToValueAtTime(gain, now);
-        })
+        if (functionPoints.length > 1) {
+            const [firstPoint] = functionPoints.splice(0, 1)
+            now = now + this.normalizeTime(firstPoint.x)
+            this.voice.gainNode.gain.setValueAtTime(this.normalizeGain(firstPoint.y), now)
+            console.log('firstPoint', firstPoint)
+            let lastX = firstPoint.x
 
-        this.voice.gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
+            functionPoints.forEach((functionPoint) => {
+                console.log(functionPoint)
+                const gain = this.normalizeGain(functionPoint.y)
+                const timeIncrement = this.normalizeTime(functionPoint.x - lastX)
+                now = now + timeIncrement
+                this.voice.gainNode.gain.linearRampToValueAtTime(gain, now)
+    
+                lastX = functionPoint.x
+            })
+    
+            now = now + 0.5
+            this.voice.gainNode.gain.linearRampToValueAtTime(0.001, now)
 
+            functionPoints.unshift(firstPoint)
+        }
 
         this.context.resume();
     }
 }
-
-
-
-// function functionExists(f) {
-//     return f && typeof f === 'function'
-// }
-
-// function isNumber(n) {
-//     return typeof n === 'number'
-// }
-
-// function testFunctionBinding() {
-//     assert(functionExists(Module._new_fib))
-//     assert(functionExists(Module._next_val))
-// }
-
-// function testNextValReturnsInt() {
-//     assert(isNumber(new Fib().next()))
-// }
-

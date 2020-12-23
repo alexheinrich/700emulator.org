@@ -20,7 +20,7 @@ export class InstrumentDesigner {
         this.bindFunctions()
         this.bindEvents()
 
-        this.editedFunction = new EditedFunction(this.container.querySelector('.canvas'), this.state, this.addFunctionPoint, this.removeLastFunctionPoint)
+        this.editedFunction = new EditedFunction(this.container.querySelector('.canvas'), this.state, this.passAddFunctionPoint, this.passRemoveLastFunctionPoint)
         this.fmConfig = new FMConfig(this.container.querySelector('.fmConfig'), this.state, this.setActiveTab)
         this.tabs = new Tabs(this.container.querySelector('.tabs'), this.state, this.setActiveTab)
     }
@@ -31,6 +31,8 @@ export class InstrumentDesigner {
     bindFunctions() {
         this.getDefaultState = this.getDefaultState.bind(this)
         this.setActiveTab = this.setActiveTab.bind(this)
+        this.passAddFunctionPoint = this.passAddFunctionPoint.bind(this)
+        this.passRemoveLastFunctionPoint = this.passRemoveLastFunctionPoint.bind(this)
     }
 
     resolveElements() {
@@ -38,6 +40,14 @@ export class InstrumentDesigner {
 
     updateUI(state) {
         this.editedFunction.updateUI(this.state)
+    }
+
+    passAddFunctionPoint(x, y) {
+        this.addFunctionPoint(this.state.beingEdited, x, y)
+    }
+
+    passRemoveLastFunctionPoint() {
+        this.removeLastFunctionPoint(this.state.beingEdited)
     }
 
     setActiveTab(tabClicked) {
