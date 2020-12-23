@@ -1,4 +1,4 @@
-import Module from '/fpu/gen/hello.js';
+import Module from '/fpu/wasm/gen/hello.js';
 
 class FloatingPointUnit extends AudioWorkletProcessor {
     constructor(options) {

@@ -4,7 +4,8 @@ export class BuchlaFPU {
         this.context = new AudioContext()
         this.output = this.context.destination
         this.voice = this.createVoice(this.output)
-        this.wasmnode = this.createProcessor(this.context)
+        // WASM Audio
+        // this.wasmnode = this.createProcessor(this.context)
 
     }
 
