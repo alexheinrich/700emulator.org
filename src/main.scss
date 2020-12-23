@@ -1,10 +1,10 @@
 // Load CSS Reset from NPM
 @import "../node_modules/reset-css/reset.css";
-@import "styles/variables";
-@import "styles/mixins";
-@import "styles/librarian";
-@import "styles/instrumentDesigner";
-@import "styles/colorPalette";
+@import "_includes/scss/variables";
+@import "_includes/scss/mixins";
+@import "downloads/style";
+@import "instrument-designer/style";
+@import "color-palette/style";
 
 @include font-face("700", "700");
 
