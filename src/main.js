@@ -1,6 +1,6 @@
 import Typed from 'typed.js';
 import { StateHandler } from './_includes/js/StateHandler.js';
-import { InstrumentDesigner } from './instrument-designer/InstrumentDesigner.js';
+import { InstrumentDesigner } from './instrument-designer/module.js';
 import { BuchlaFPU } from '../fpu/js/BuchlaFPU.js';
 
 

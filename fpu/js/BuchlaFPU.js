@@ -4,9 +4,9 @@ export class BuchlaFPU {
         this.context = new AudioContext()
         this.output = this.context.destination
         this.voice = this.createVoice(this.output)
+
         // WASM Audio
         // this.wasmnode = this.createProcessor(this.context)
-
     }
 
     init() {
@@ -19,12 +19,8 @@ export class BuchlaFPU {
 
     async createProcessor() {
         await this.context.audioWorklet.addModule('/fpu/js/FloatingPointUnit.js')
-        // console.log(this.module)
-        // console.log(Module)
-        // const fib = new Fib(this.module)
-        // console.log(fib.next())
-        const testNode = new AudioWorkletNode(this.context, 'FloatingPointUnit')
 
+        const testNode = new AudioWorkletNode(this.context, 'FloatingPointUnit')
         testNode.connect(this.output)
 
         return testNode

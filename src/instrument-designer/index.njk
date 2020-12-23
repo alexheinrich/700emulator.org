@@ -38,14 +38,11 @@ mouseFollowerData:
     - This is the main menu. Click on one of items to get more info.
 ---
 <div class="center instrument-designer">
-  {% include "./_partials/tabs.njk" %}
-  {# {% set color = 'crimson' %}
-  {% include "./_partials/tabs.njk" %} #}
+  {% include "./_partials/Tabs.njk" %}
+
   <div class="canvasWrapper border">
     <canvas class="canvas" width="1080" height="680"/>
   </div>
 
-  <div class="canvasConfigWrapper border">
-    <canvas class="canvasConfig" width="260" height="220"/>
-  </div>
+  {% include "./FMConfig/index.njk" %}
 </div>
