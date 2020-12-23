@@ -87,7 +87,7 @@ export class BuchlaFPU {
                 lastX = functionPoint.x
             })
     
-            now = now + 0.5
+            now = now + 0.03
             this.voice.gainNode.gain.linearRampToValueAtTime(0.001, now)
 
             functionPoints.unshift(firstPoint)
