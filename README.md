@@ -1,6 +1,6 @@
 # 700 emulator
 
-A site to showcase the Buchla 700 synthesizer.
+A site to show how an early digital synthesizer worked.
 
 ## Running the project
 ```
