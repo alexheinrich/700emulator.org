@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An modern approximation of the Buchla 700.",
   "scripts": {
-    "build": "eleventy --pathprefix=/700emulator.org_eleventy",
+    "build": "eleventy --pathprefix=/700emulator.org",
     "watch": "eleventy --watch",
     "serve": "webpack --mode development --watch & eleventy --serve",
     "serve:webpack": "webpack --mode development --watch",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:alexheinrich/700emulator.org_eleventy.git"
+    "url": "git@github.com:alexheinrich/700emulator.org.git"
   },
   "author": {
     "name": "Alexander Heinrich",
@@ -24,9 +24,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexheinrich/700emulator.org_eleventy.git"
+    "url": "https://github.com/alexheinrich/700emulator.org.git"
   },
-  "homepage": "https://github.com/alexheinrich/700emulator.org_eleventy.git",
+  "homepage": "https://github.com/alexheinrich/700emulator.org.git",
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-navigation": "^0.1.6",
