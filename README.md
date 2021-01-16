@@ -3,7 +3,7 @@
 A status quo of an attempt to make a web synthesizer based on the Buchla 700. This is a non-commercial project aiming to preserve and make accessible early digital synthesizer technology.
 
 ## Folder structure
-The main source code can be found under `src`, under `fpu` there are currently some first attempts for a WebAssembly implementation of a sound engine.
+The main source code can be found under `src/`, under `fpu/` there are currently some first attempts for a WebAssembly implementation of a sound engine.
 
 ## Installation
 ```
