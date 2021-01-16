@@ -1,27 +1,23 @@
-# 700 emulator
+# 700 web synthesizer
 
-A site to show how an early digital synthesizer worked.
+A status quo of an attempt to make a web synthesizer based on the Buchla 700. This is a non-commercial project aiming to preserve and make accessible early digital synthesizer technology.
 
-## Running the project
+## Folder structure
+The main source code can be found under `src`, under `fpu` there are currently some first attempts for a WebAssembly implementation of a sound engine.
+
+## Installation
 ```
 npm install
 ```
 
+To run and serve locally:
 ```
-npx eleventy
-```
-
-Or build and host locally for local development
-```
-npx eleventy --serve
+npm run serve
 ```
 
-Or build automatically when a template changes:
+To deploy to github pages:
 ```
-npx eleventy --watch
+npm run deploy
 ```
-
-Or in debug mode:
-```
-DEBUG=* npx eleventy
-```
+## Preview
+A preview of the current status can be viewed here: [https://alexheinrich.github.io/700emulator.org/](https://alexheinrich.github.io/700emulator.org/)

@@ -4,12 +4,7 @@
   "description": "An modern approximation of the Buchla 700.",
   "scripts": {
     "build": "eleventy --pathprefix=/700emulator.org",
-    "watch": "eleventy --watch",
     "serve": "webpack --mode development --watch & eleventy --serve",
-    "serve:webpack": "webpack --mode development --watch",
-    "serve:eleventy": "eleventy --serve",
-    "start": "eleventy --serve",
-    "debug": "DEBUG=* eleventy",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d _site"
   },
