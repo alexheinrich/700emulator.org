@@ -1,11 +1,11 @@
-#include "fib.h"
+#include "sin.h"
 #include <cstdlib> 
 
 
-Fib::Fib() {
+Sin::Sin() {
 }
 
-double Fib::next() {
+double Sin::next() {
 	curphase += incr;
 
 	if (curphase >= twopi) {
@@ -17,5 +17,4 @@ double Fib::next() {
 	}
   
   return curphase;
-  return (((double) rand() / (RAND_MAX)) * 2.0) - 1.0;
 }

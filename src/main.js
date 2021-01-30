@@ -1,7 +1,8 @@
 import Typed from 'typed.js';
 import { StateHandler } from './_includes/js/StateHandler.js';
 import { InstrumentDesigner } from './instrument-designer/module.js';
-import { BuchlaFPU } from '../fpu/js/BuchlaFPU.js';
+// import { FPUWebAudio } from '../fpu/js/FPUWebAudio.js';
+import { FPUWebAssembly } from '../fpu/js/FPUWebAssembly.js';
 
 
 // window.oncontextmenu = function goBack(e) {
@@ -47,7 +48,7 @@ const stateHandler = new StateHandler()
 const { addFunctionPoint, removeLastFunctionPoint } = stateHandler
 
 const instrumentDesignerEl = document.querySelector('.instrument-designer')
-const buchlaFPU = new BuchlaFPU()
+const buchlaFPU = new FPUWebAssembly()
 
 if (instrumentDesignerEl) {
   const instrumentDesigner = new InstrumentDesigner(instrumentDesignerEl, stateHandler.state, addFunctionPoint, removeLastFunctionPoint)

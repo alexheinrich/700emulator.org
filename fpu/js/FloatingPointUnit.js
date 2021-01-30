@@ -6,10 +6,10 @@ class FloatingPointUnit extends AudioWorkletProcessor {
         console.log(options.numberOfInputs)
         console.log(Module)
 
-        this.fib = new Fib(Module)
+        this.sin = new Sin(Module)
 
         for (let i = 0; i < 440; i++) {
-            console.log(this.fib.next())
+            console.log(this.sin.next())
         }
         console.log(Math.random() * 2 - 1)
 
@@ -20,7 +20,7 @@ class FloatingPointUnit extends AudioWorkletProcessor {
         output.forEach(channel => {
             for (let i = 0; i < channel.length; i++) {
                 // channel[i] = Math.random() * 2 - 1
-                channel[i] = this.fib.next()
+                channel[i] = this.sin.next()
             }
         })
         return true
@@ -29,10 +29,10 @@ class FloatingPointUnit extends AudioWorkletProcessor {
 
 registerProcessor('FloatingPointUnit', FloatingPointUnit)
 
-class Fib {
+class Sin {
     constructor(module) {
         this.module = module
-        this.instance = module._new_fib()
+        this.instance = module.__Z7new_sinv()
     }
 
     next() {

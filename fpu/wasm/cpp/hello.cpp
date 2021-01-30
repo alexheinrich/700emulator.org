@@ -1,21 +1,21 @@
-#include "fib.h"
+#include "sin.h"
 #include <vector>
 #include <emscripten.h>
 
 extern "C" {
 	double new_fib();
-	double next_val(int fib_instance);
+	double next_val(int sin_instance);
 }
 
-auto instances = std::vector<Fib>();
+auto instances = std::vector<Sin>();
 
-EMSCRIPTEN_KEEPALIVE double next_val(int fib_instance)
+EMSCRIPTEN_KEEPALIVE double next_val(int sin_instance)
 {
-	return instances[fib_instance].next();
+	return instances[sin_instance].next();
 }
 
-EMSCRIPTEN_KEEPALIVE double new_fib() {
-  instances.push_back(Fib());
+EMSCRIPTEN_KEEPALIVE double new_sin() {
+  instances.push_back(Sin());
   return instances.size() - 1;
 }
 

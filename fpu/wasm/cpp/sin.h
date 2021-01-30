@@ -1,9 +1,9 @@
-#ifndef FIB
-#define FIB
+#ifndef SIN
+#define SIN
 
-class Fib {
+class Sin {
     public:
-        Fib();
+        Sin();
         double next();
 
     private:
