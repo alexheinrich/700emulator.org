@@ -2,7 +2,9 @@
 #include <cstdlib> 
 
 
-Sin::Sin() {
+Sin::Sin(double freq) {
+	curfreq = freq;
+	incr = curfreq * twopiovrsr;
 }
 
 double Sin::next() {
@@ -16,5 +18,5 @@ double Sin::next() {
 		curphase += twopi;
 	}
   
-  return curphase;
+  return sin(curphase);
 }

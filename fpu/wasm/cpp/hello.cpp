@@ -3,7 +3,7 @@
 #include <emscripten.h>
 
 extern "C" {
-	double new_fib();
+	double new_sin(double freq);
 	double next_val(int sin_instance);
 }
 
@@ -14,8 +14,8 @@ EMSCRIPTEN_KEEPALIVE double next_val(int sin_instance)
 	return instances[sin_instance].next();
 }
 
-EMSCRIPTEN_KEEPALIVE double new_sin() {
-  instances.push_back(Sin());
+EMSCRIPTEN_KEEPALIVE double new_sin(double freq = 440.0) {
+  instances.push_back(Sin(freq));
   return instances.size() - 1;
 }
 
